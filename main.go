@@ -1,17 +1,25 @@
 package main
 
 import (
+	"log"
+	"os"
+
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/joho/godotenv"
 )
-
-var DB_FILE string = "./app.db"
 
 func main() {
 
-	db := initDatabase(DB_FILE)
+	// load env variables
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+	var DB_URL string = os.Getenv("DB_URL")
+
+	db := initDatabase(DB_URL)
 	r := gin.Default()
-	r.LoadHTMLGlob("templates/*")
 
 	r.Use(static.Serve("/", static.LocalFile("./client/build", true)))
 
@@ -44,13 +52,22 @@ func main() {
 	r.GET("/shorten", func(c *gin.Context) {
 
 		var uri shortenUri // see request_models.go for struct
+		var shortUri string
 
 		if err := c.Bind(&uri); err != nil {
 			c.JSON(400, gin.H{"msg": err})
 		}
-		shorten_url(uri.Url)
+		shortUri = shortenUrl(uri.Url, db)
 		c.JSON(200, gin.H{
-			"url": uri.Url,
+			"url":      uri.Url,
+			"shortUrl": shortUri,
+		})
+	})
+
+	r.GET("/random", func(c *gin.Context) {
+		var randID string = generateRandId(6)
+		c.JSON(200, gin.H{
+			"ID": randID,
 		})
 	})
 

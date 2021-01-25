@@ -1,8 +1,7 @@
 package main
 
 import (
-	"net/http"
-
+	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 )
 
@@ -14,9 +13,7 @@ func main() {
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "index.html", nil)
-	})
+	r.Use(static.Serve("/", static.LocalFile("./client/build", true)))
 
 	// redirect routing route
 	// id is the id that corresponds to the id in the database

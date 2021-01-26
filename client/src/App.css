@@ -5,6 +5,37 @@
     padding-bottom: 30px;
     max-width: 1080px;
 }
+.blob-top {
+    margin: 1.75rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 350px;
+    width: 350px;
+    z-index: -1;
+}
+.blob-bottom {
+    margin: 1.75rem;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 200px;
+    height: 200px;
+    z-index: -1;
+}
+@media(max-width: 768px) {
+    .bloc-top {
+        height: 250px;
+        width: 250px;
+    }
+    .blob-bottom {
+        height: 150px;
+        width: 150px; 
+    }
+    .blob-top, .blob-bottom {
+        margin: 0px;
+    }
+}
 .landing-title {
     font-size: 3rem;
     font-weight: 500;
@@ -49,6 +80,12 @@
 .url-input:focus {
     outline: none;
     border: 1px solid rgb(255, 95, 95);
+}
+.input-loader-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 @media(max-width: 768px) {
     .url-input {
@@ -111,11 +148,28 @@
     font-size: 200;
     margin-bottom: 0px;
     margin-top: 0px;
+    text-align: inherit;
 }
 .url-box-border {
+    background: white;
     border: 1px solid black;
     padding: 1.25rem;
     border-radius: 4px;
+    box-shadow: 5px 5px rgb(255, 95, 95);
+}
+@media(max-width: 768px) {
+    .shortened-url-wrapper {
+        align-items: center;
+        width: 100%;
+        margin-left: 0.875em;
+    }
+    .url-box-border {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
 }
 .footer {
     color: grey;
@@ -125,6 +179,7 @@
     align-items: flex-start;
     justify-content: space-between;
     height: 100%;
+    font-size: 0.75rem;
 }
 .link {
     text-decoration: none;
@@ -136,3 +191,45 @@
 .link:visited {
     color: inherit;
 }
+
+/* Loader CSS */
+.lds-ring {
+    display: inline-block;
+    position: relative;
+    width: 60px;
+    height: 60px;
+  }
+@media(max-width: 768px) {
+    .lds-ring{
+        display: none;
+    }
+}
+.lds-ring div {
+  box-sizing: border-box;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  margin: 8px;
+  border: 4px solid rgb(199, 199, 199);
+  border-radius: 50%;
+  animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+  border-color: rgb(199, 199, 199) transparent transparent transparent;
+}
+.lds-ring div:nth-child(1) {
+  animation-delay: -0.45s;
+}
+.lds-ring div:nth-child(2) {
+  animation-delay: -0.3s;
+}
+.lds-ring div:nth-child(3) {
+  animation-delay: -0.15s;
+}
+@keyframes lds-ring {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+  

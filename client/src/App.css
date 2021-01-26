@@ -5,69 +5,134 @@
     padding-bottom: 30px;
     max-width: 1080px;
 }
-
+.landing-title {
+    font-size: 3rem;
+    font-weight: 500;
+    margin-bottom: 0.252em;
+}
+.landing-body {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
 .landing-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    align-items: flex-start;
+    min-height: 90vh;
     width: 100%;
+    text-align: left;
 }
 @media(max-width: 768px) {
     .landing-container {
         min-height: none;
+        align-items: center;
+    }
+    .landing-body {
+        font-size: 1.0rem;
+        text-align: center;
     }
 }
-
 .url-input {
-    padding: 0.625em;
+    padding: 0.525em;
     border-radius: 0px;
     width: 600px;
-    border: 2px black solid;
+    border: 1px black solid;
     margin: 0.875em;
-    font-size: 1.5rem;
-    text-align: center;
+    margin-left: 0px;
+    font-size: 1.3rem;
+    text-align: left;
     transition: ease-in-out 0.05s;
     font-weight: 500;
+    border-radius: 4px;
 }
-
 .url-input:focus {
     outline: none;
-    border: 2px solid rgb(255, 95, 95);
+    border: 1px solid rgb(255, 95, 95);
 }
 @media(max-width: 768px) {
     .url-input {
-        width: 70vw;
+        width: 80vw;
         font-size: 1.0rem;
     }
 }
-
 .generate-btn {
-    padding: 0.875em;
-    border-radius: 5px;
+    padding: 0.525em;
+    border-radius: 4px;
     background: rgb(255, 95, 95);
-    border: solid white 2px;
+    border: solid white 1px;
     color: white;
-    font-size: 1.25rem;
+    font-size: 1.3rem;
     transition: ease-in-out 0.1s;
 }
 .generate-btn:hover {
-    border: solid 2px rgb(255, 95, 95);
+    border: solid 1px rgb(255, 95, 95);
     background: white;
     color: rgb(255, 95, 95);
 }
 .generate-btn:focus {
     outline: none;
 }
+.copy-btn {
+    padding: 0.725em;
+    width: 100px;
+    border-radius: 4px;
+    border: solid 1px rgb(255, 95, 95);
+    background: white;
+    color: rgb(255, 95, 95);
+    background: white;;
+    font-size: 0.95rem;
+    transition: ease-in-out 0.1s;
+    margin: 0.875rem;
+}
+.copy-btn:hover {
+    background: rgb(255, 95, 95);
+    border: solid 1px white;
+    color:white
+}
+.copy-btn:focus {
+    outline: none;
+}
 .shortened-url-wrapper {
     min-height: 150px;
     width: 100%;
     margin: 0.875em;
+    margin-left: 0px;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     color: rgb(48, 48, 252);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    text-align: left;
+}
+.short-url-title {
+    color: black;
+    font-size: 200;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+.url-box-border {
+    border: 1px solid black;
+    padding: 1.25rem;
+    border-radius: 4px;
+}
+.footer {
+    color: grey;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+}
+.link {
+    text-decoration: none;
+    color: inherit;
+}
+.link:hover {
+    text-decoration: underline;
+}
+.link:visited {
+    color: inherit;
 }

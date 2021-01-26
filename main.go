@@ -33,7 +33,7 @@ func main() {
 			c.JSON(400, gin.H{"message": err})
 		}
 		var RedirectLoc string
-		row := db.QueryRow("SELECT RedirectLoc FROM urls WHERE id = ?", uri.Id)
+		row := db.QueryRow("SELECT RedirectLoc FROM urls WHERE id = $1", uri.Id)
 		err := row.Scan(&RedirectLoc)
 
 		// will error out if the id is not found in the database

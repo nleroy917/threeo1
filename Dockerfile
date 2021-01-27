@@ -16,7 +16,7 @@ WORKDIR /app
 COPY go.*  /app/
 COPY *.go /app/
 COPY .env /app/
-COPY --from=build /app/ /app/client
+COPY --from=build /app/build /app/client/build
 
 RUN go mod download
 RUN go build -o /app/serve

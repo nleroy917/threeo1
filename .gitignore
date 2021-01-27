@@ -2,3 +2,4 @@ app.db-journal
 tmp/
 client/node_modules/
 .google/
+.env

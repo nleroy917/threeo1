@@ -14,7 +14,7 @@ func main() {
 	// load env variables
 	err := godotenv.Load()
 	if err != nil {
-		log.Fatal("Error loading .env file")
+		log.Println("Error loading .env file - check production server for proper env variables")
 	}
 	var DB_URL string = os.Getenv("DB_URL")
 

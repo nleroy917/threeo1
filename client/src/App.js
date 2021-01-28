@@ -56,6 +56,12 @@ const App = () => {
             className="url-input" 
             type="text"
             onChange={(e) => {setUrl(e.target.value)}}
+            onKeyDown={(e) => {
+              console.log(e)
+              if(e.key === "Enter") {
+                generateUrl()
+              }
+            }}
           />
           {loading ? <div class="lds-ring"><div></div><div></div><div></div><div></div></div> : <div></div>}
         </div>

@@ -13,6 +13,11 @@ RUN yarn build
 # production env
 FROM golang:alpine
 WORKDIR /app
+
+# install gcc
+RUN set -ex && \
+    apk add --no-cache gcc musl-dev
+
 COPY go.*  /app/
 COPY *.go /app/
 COPY .env /app/

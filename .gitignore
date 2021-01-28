@@ -3,3 +3,4 @@ tmp/
 client/node_modules/
 .google/
 .env
+*.db

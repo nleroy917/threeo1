@@ -21,6 +21,7 @@ func main() {
 
 	db := initDatabase(DB_URL)
 	r := gin.Default()
+	r.LoadHTMLGlob("templates/*")
 
 	r.Use(static.Serve("/", static.LocalFile("./client/build", true)))
 
@@ -40,7 +41,7 @@ func main() {
 
 		// will error out if the id is not found in the database
 		if err != nil {
-			c.JSON(404, gin.H{"message": err.Error()})
+			c.HTML(404, "404.html", nil)
 			return
 		}
 

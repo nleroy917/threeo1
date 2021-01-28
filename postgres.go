@@ -31,7 +31,7 @@ func initDatabase(file string) *sql.DB {
 // a new entry in the database
 func shortenUrl(url string, db *sql.DB) string {
 
-	var shortUriBase string = "https://threeo.one/to/"
+	var shortUriBase string = "https://www.threeo.one/to/"
 	const ID_LENGTH = 6
 
 	// check if url already exists in db
@@ -63,7 +63,7 @@ func urlExists(potentialUrl string, db *sql.DB) string {
 
 	var id string
 	var url string
-	var shortUriBase string = "https://threeo.one/to/"
+	var shortUriBase string = "https://www.threeo.one/to/"
 
 	// log.Println(potentialUrl)
 	row := db.QueryRow("SELECT id, redirectloc FROM URLS WHERE redirectloc= $1", potentialUrl)

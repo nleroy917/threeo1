@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"os"
+	"strings"
 
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
@@ -30,16 +31,35 @@ func main() {
 		var uri redirectUri // see request_models.go for struct
 
 		if err := c.ShouldBindUri(&uri); err != nil {
-			c.JSON(400, gin.H{"message": err})
+			c.JSON(400, gin.H{"message": err.Error()})
 		}
 		var RedirectLoc string
-		row := db.QueryRow("SELECT RedirectLoc FROM urls WHERE id = $1", uri.Id)
+
+		row := db.QueryRow("SELECT redirectloc FROM urls WHERE id = $1", uri.Id)
 		err := row.Scan(&RedirectLoc)
 
 		// will error out if the id is not found in the database
 		if err != nil {
 			c.JSON(404, gin.H{"message": err.Error()})
 			return
+		}
+
+		// check that redirectloc contains http at the begining
+		// check that AT LEAST http is in url string...
+		// if so... verify it is at the begining!
+		//		if not --> place at begining
+		//		else --> proceed as normal
+		// if NOT in url string at all
+		//		place at begining
+		indx := strings.Index(RedirectLoc, "http")
+
+		if indx != 0 { // http not in correct location
+			// place at begining
+			// this case catches url strings
+			// that have no http at all
+			// and those that have it somewhere in middle
+			RedirectLoc = "http://" + RedirectLoc
+
 		}
 
 		// set the "Location" header for the 301 redirect

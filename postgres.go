@@ -7,11 +7,12 @@ import (
 	"math/rand"
 
 	_ "github.com/lib/pq"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 // init the database - returns sql.DB struct pointer
-func initDatabase(file string) *sql.DB {
-	db, err := sql.Open("postgres", file)
+func initDatabase(file string, engine string) *sql.DB {
+	db, err := sql.Open(engine, file)
 	if err != nil {
 		log.Fatal(err)
 	}

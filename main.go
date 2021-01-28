@@ -1,6 +1,7 @@
 package main
 
 import (
+	"database/sql"
 	"log"
 	"os"
 	"strings"
@@ -15,11 +16,34 @@ func main() {
 	// load env variables
 	err := godotenv.Load()
 	if err != nil {
-		log.Println("Error loading .env file - check production server for proper env variables")
+		log.Println("Error loading .env file - using local sqlite3 db instead")
 	}
-	var DB_URL string = os.Getenv("DB_URL")
 
-	db := initDatabase(DB_URL)
+	var DB_URL string = os.Getenv("DB_URL")
+	var db *sql.DB
+
+	if len(DB_URL) > 0 {
+		db = initDatabase(DB_URL, "postgres")
+	} else {
+		// use a local sqlite3 database instead (development)
+		log.Println("[WARNING] - using local sqlite db instead. This is okay for development but NOT production")
+		// refresh data in db if it exists
+		if _, err := os.Stat("app.db"); err == nil {
+
+			// app.db exists - remove it
+			err := os.Remove("app.db")
+
+			if err != nil {
+				log.Fatal(err.Error())
+			}
+		}
+		// init new one
+		db = initDatabase("app.db", "sqlite3")
+
+		// create table
+		db.Exec("CREATE TABLE \"urls\" (\"id\"	TEXT, \"redirectloc\"	TEXT, PRIMARY KEY(\"id\"));")
+	}
+
 	r := gin.Default()
 	r.LoadHTMLGlob("templates/*")
 

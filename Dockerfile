@@ -18,6 +18,7 @@ WORKDIR /app
 RUN set -ex && \
     apk add --no-cache gcc musl-dev
 
+COPY ./templates/ /app/templates
 COPY go.*  /app/
 COPY *.go /app/
 COPY .env /app/

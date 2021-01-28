@@ -54,7 +54,7 @@ func main() {
 		//		place at begining
 		indx := strings.Index(RedirectLoc, "http")
 
-		if indx != 0 { // http not in correct location
+		if indx != 0 { // http not in correct location or not present at all
 			// place at begining
 			// this case catches url strings
 			// that have no http at all

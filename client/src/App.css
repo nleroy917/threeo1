@@ -156,6 +156,11 @@
     padding: 1.25rem;
     border-radius: 4px;
     box-shadow: 5px 5px rgb(255, 95, 95);
+    transition: ease-in-out 0.08s;
+}
+.url-box-border:hover {
+    transform: translate(2px,2px);
+    box-shadow: 3px 3px rgb(255, 95, 95);
 }
 @media(max-width: 768px) {
     .shortened-url-wrapper {

@@ -101,7 +101,7 @@ const App = () => {
       <footer className="footer">
           <a className="link" href="https://github.com/nleroy917/threeo1">Source</a>
           <a>v0.1.0</a>
-          <a className="link">Created by Nathan LeRoy</a>
+          <a>Created by Nathan LeRoy</a>
         </footer>
     </div>
   );

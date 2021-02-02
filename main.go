@@ -109,12 +109,5 @@ func main() {
 		})
 	})
 
-	r.GET("/random", func(c *gin.Context) {
-		var randID string = generateRandId(6)
-		c.JSON(200, gin.H{
-			"ID": randID,
-		})
-	})
-
 	r.Run() // listen and serve on 0.0.0.0:8080 (for windows "localhost:8080")
 }
